@@ -1,30 +1,36 @@
 import React from 'react';
 import Wish from './Wish';
 import {makeStyles} from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableContainer from '@material-ui/core/TableContainer';
-import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import Card from '@material-ui/core/Card';
 
-const useStyles = makeStyles({
-    table: {
-        minWidth: 650,
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        flexGrow: 1,
     },
-});
+    card: {
+        maxWidth: 345,
+    },
+    control: {
+        padding: theme.spacing(2),
+    },
+}));
 
 const WishList = (props) => {
     const classes = useStyles();
 
     return (
-        <TableContainer component={Paper}>
-            <Table className={classes.table} aria-label="simple table">
-                <TableBody>
-                    {props.wishes.map((wish) => (
+        <Grid container className={classes.root}>
+            {props.wishes.map((wish) => (
+                <Grid item sm={4} xs={12} className={classes.control}>
+                    <Card className={classes.card}>
                         <Wish key={wish._id} wish={wish}/>
-                    ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
+                    </Card>
+                </Grid>
+            ))}
+        </Grid>
+
     );
 }
 

@@ -10,12 +10,6 @@ const App = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [data, setData] = useState([]);
 
-    // useEffect(async () => {
-    //     const result = await axios.get('/list');
-    //
-    //     setData(result.data);
-    // });
-
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
