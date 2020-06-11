@@ -36,6 +36,7 @@ const Wish = ({wish}) => {
     return (
         <React.Fragment>
             <CardActionArea>
+                <Typography color={'textPrimary'} align={'center'} variant="h5">{wish.name}</Typography>
                 <CardMedia
                     className={classes.media}
                     image={require(`../images/${wish.image}.jpg`)}
@@ -44,7 +45,7 @@ const Wish = ({wish}) => {
                 <CardContent>
                     <a target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none'}}
                        href={wish.link}>
-                        <Typography color="primary" variant="h5">לקניה לחץ כאן</Typography>
+                        <Typography align={'center'} color={'textSecondary'} variant="h5">לקניה לחץ כאן</Typography>
                     </a>
                 </CardContent>
             </CardActionArea>
@@ -64,7 +65,7 @@ const Wish = ({wish}) => {
                     </Grid>
                     <Grid item>
                         <Typography gutterBottom variant="h5" component="h2">
-                            נא לסמן
+                            :-) בחרת? סמן אותי
                         </Typography>
                     </Grid>
                 </Grid>
