@@ -11,6 +11,7 @@
     "material-ui-image": "^3.2.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-material-ui-carousel": "^1.5.1",
     "react-scripts": "3.4.1"
   },
   "scripts": {
