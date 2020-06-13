@@ -164,17 +164,6 @@ const Wish = ({wish}) => {
                             :-) בחרת? סמן אותי
                         </Typography>
                     </Grid>
-                    {/*<button type="button" onClick={handleOpen}>*/}
-                    {/*    Open Modal*/}
-                    {/*</button>*/}
-                    {/*<Modal*/}
-                    {/*    open={open}*/}
-                    {/*    onClose={handleClose}*/}
-                    {/*    aria-labelledby="simple-modal-title"*/}
-                    {/*    aria-describedby="simple-modal-description"*/}
-                    {/*>*/}
-                    {/*    <h1 style={modalStyle} className={classes.paper}>Hello World</h1>*/}
-                    {/*</Modal>*/}
                 </Grid>
             </CardActions>
         </React.Fragment>
