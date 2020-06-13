@@ -14,6 +14,12 @@ const WishSchema = new Schema({
     image: {
         type: String
     },
+    first_name: {
+        type: String
+    },
+    last_name: {
+        type: String
+    },
     taken: {
         type: Boolean
     }

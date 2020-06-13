@@ -40,8 +40,6 @@ const App = () => {
             setIsLoading(true);
             const result = await axios('/api/list',);
 
-            console.log(result.data);
-
             setData(result.data);
             setIsLoading(false);
         };
@@ -51,15 +49,9 @@ const App = () => {
 
     return (
         <Container fixed className={classes.container}>
-
-            {/*<header className="App-header">*/}
-            {/*    <img src={logo} className="App-logo" alt="logo"/>*/}
-            {/*</header>*/}
-            <Carousel
-                autoPlay={true}
-            >
+            <Carousel autoPlay={true}>
                 {
-                    items.map(item => <Item imageName={item}/>)
+                    items.map(item => <Item key={item} imageName={item}/>)
                 }
             </Carousel>
             <div className="Main">

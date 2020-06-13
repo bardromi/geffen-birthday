@@ -23,9 +23,9 @@ const WishList = (props) => {
     return (
         <Grid container className={classes.root}>
             {props.wishes.map((wish) => (
-                <Grid item sm={4} xs={12} className={classes.control}>
+                <Grid key={wish._id} item sm={4} xs={12} className={classes.control}>
                     <Card className={classes.card}>
-                        <Wish key={wish._id} wish={wish}/>
+                        <Wish wish={wish}/>
                     </Card>
                 </Grid>
             ))}
