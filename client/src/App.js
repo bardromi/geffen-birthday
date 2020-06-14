@@ -14,14 +14,24 @@ const useStyles = makeStyles({
     },
     container: {
         paddingTop: '10px'
-    }
+    },
+    '@media (max-height: 900px)':{
+        item: {
+            minHeight: '200px',
+        }
+    },
+    '@media (min-height: 901px)':{
+        item: {
+            minHeight: '580px',
+        }
+    },
 });
 
 function Item({imageName}) {
     const classes = useStyles();
 
     return (
-        <Paper>
+        <Paper className={classes.item}>
             <img alt={classes.img} className={classes.img} src={require(`./images/${imageName}.png`)}/>
         </Paper>
     )
