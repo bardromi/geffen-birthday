@@ -83,7 +83,6 @@ const Wish = ({wish}) => {
             "last_name": last,
             "taken": !checked
         });
-        console.log('result', result);
         setChecked(result.data.taken);
         handleClose()
     }
@@ -96,7 +95,6 @@ const Wish = ({wish}) => {
         setLast(event.target.value);
     }
 
-
     return (
         <React.Fragment>
             <CardActionArea>
@@ -104,7 +102,7 @@ const Wish = ({wish}) => {
                 <CardMedia
                     className={classes.media}
                     // image={require(`../images/${wish.image}.jpg`)}
-                    image={`/api/list/images/${wish.image}.jpg`}
+                    image={`/api/list/images/${wish.image}`}
                     title="Contemplative Reptile"
                 />
                 <CardContent>

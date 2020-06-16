@@ -19,16 +19,18 @@ const useStyles = makeStyles((theme) => ({
 
 const WishList = (props) => {
     const classes = useStyles();
-
+    console.log('render list');
     return (
         <Grid container className={classes.root}>
-            {props.wishes.map((wish) => (
-                <Grid key={wish._id} item sm={4} xs={12} className={classes.control}>
-                    <Card className={classes.card}>
-                        <Wish wish={wish}/>
-                    </Card>
-                </Grid>
-            ))}
+            {
+                props.wishes.filter(wish => wish.image).map((wish) => (
+                    <Grid key={wish._id} item sm={4} xs={12} className={classes.control}>
+                        <Card className={classes.card}>
+                            <Wish wish={wish}/>
+                        </Card>
+                    </Grid>
+                ))
+            }
         </Grid>
 
     );

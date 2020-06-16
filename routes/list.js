@@ -42,17 +42,16 @@ router.get('/', (req, res) => {
 
 // @route   POST api/list/upload
 // @desc    Add wish to list
-router.route("/upload").post(upload.single('image'), (req, res) => {
-    console.log('body', req.body);
-    console.log('req', req.file.path);
-    // const newWish = new Wish({
-    //     name: req.body.name,
-    //     link: req.body.link,
-    //     image: req.body.image,
-    //     taken: req.user.taken
-    // });
-    //
-    // newWish.save().then(post => res.json(post));
+router.route("/upload_local").post(upload.single('image'), (req, res) => {
+    let path = req.file.path.split('\\');
+    const newWish = new Wish({
+        name: req.body.title,
+        link: req.body.link,
+        image: path[path.length - 1],
+        taken: false
+    });
+
+    newWish.save().then(post => res.json(post));
 });
 
 // @route   PUT api/list/:wish_id

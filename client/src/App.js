@@ -6,8 +6,6 @@ import WishList from './components/WishList';
 import Carousel from 'react-material-ui-carousel';
 import {Paper} from '@material-ui/core'
 import {makeStyles} from "@material-ui/core/styles";
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
 import Upload from "./components/Upload";
 
 
@@ -55,7 +53,7 @@ const App = () => {
 
 
     const [isLoading, setIsLoading] = useState(false);
-    const [isUpLoading, setIsUpLoading] = useState(false);
+    // const [isUpLoading, setIsUpLoading] = useState(false);
 
     const [data, setData] = useState([]);
 
@@ -63,7 +61,6 @@ const App = () => {
         const fetchData = async () => {
             setIsLoading(true);
             const result = await axios.get('/api/list',);
-            console.log('bar', result);
             setData(result.data);
             setIsLoading(false);
         };
@@ -71,14 +68,9 @@ const App = () => {
         fetchData();
     }, []);
 
-    const onChangeInput = async (e) => {
-        setIsUpLoading(true);
-        const image = e.target.files[0];
-        const data = new FormData();
-        data.append("image", image);
-        const result = await axios.post('/api/list/upload', data);
-        console.log(result);
-        setIsUpLoading(true);
+    const handleUploadNewWish = (wish) => {
+        setData((data) => ([...data, wish.data]))
+        setIsLoading(false);
     }
 
     return (
@@ -96,7 +88,7 @@ const App = () => {
                 )}
 
             </div>
-            <Upload/>
+            <Upload onUpload={handleUploadNewWish} setIsLoading={setIsLoading}/>
         </Container>
     );
 }

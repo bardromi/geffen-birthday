@@ -1,13 +1,10 @@
 import React from 'react';
 import Grid from "@material-ui/core/Grid";
-import Checkbox from "@material-ui/core/Checkbox";
 import Modal from "@material-ui/core/Modal";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
-import Container from "@material-ui/core/Container";
 import axios from "axios";
 import {makeStyles} from "@material-ui/core/styles";
 
@@ -52,7 +49,7 @@ function getModalStyle() {
     };
 }
 
-const Upload = () => {
+const Upload = (props) => {
     const classes = useStyles();
     // getModalStyle is not a pure function, we roll the style only on the first render
     const [modalStyle] = React.useState(getModalStyle);
@@ -74,7 +71,14 @@ const Upload = () => {
     };
 
     const handleSubmit = async () => {
-        console.log('submit');
+        props.setIsLoading(true);
+        const data = new FormData();
+        data.append("image", image);
+        data.append("title", title);
+        data.append("link", link);
+        const result = await axios.post('/api/list/upload_local', data);
+        props.onUpload(result);
+        handleClose();
     }
 
     const handleChangeTitle = (event) => {
@@ -85,13 +89,9 @@ const Upload = () => {
         setLink(event.target.value);
     }
 
-    const onChangeInput = async (e) => {
+    const onChangeInput = (e) => {
         const image = e.target.files[0];
         setImage(image);
-        // const data = new FormData();
-        // data.append("image", image);
-        // const result = await axios.post('/api/list/upload', data);
-        // console.log(result);
     }
 
     return (
@@ -111,7 +111,7 @@ const Upload = () => {
                         <TextField
                             id="title"
                             onChange={handleChangeTitle}
-                            placeholder={"הכנס כותרת לתמונה"}
+                            placeholder={"כותרת למתנה"}
                         />
                     </Grid>
                     <br/>
@@ -119,7 +119,7 @@ const Upload = () => {
                         <TextField
                             id="link"
                             onChange={handleChangeLink}
-                            placeholder={"הכנס לינק לאתר"}
+                            placeholder={"קישור למתנה"}
                         />
                     </Grid>
                     <Grid item xs={12} align="center">
@@ -132,8 +132,8 @@ const Upload = () => {
                             onChange={onChangeInput}
                         />
                         <label htmlFor={'upload-photo'}>
-                            <Button variant="contained">
-                                Upload Image
+                            <Button variant="contained" component="span">
+                                העלאת תמונה
                             </Button>
                         </label>
                     </Grid>
