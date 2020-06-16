@@ -1,7 +1,33 @@
 const express = require('express');
 const router = express.Router();
 const Wish = require('../models/wish');
+const multer = require('multer');
 
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './images/');
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname);
+    }
+});
+
+const fileFilter = (req, file, cb) => {
+    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+        cb(null, true);
+    } else {
+        // rejects storing a file
+        cb(null, false);
+    }
+}
+
+const upload = multer({
+    storage: storage,
+    limits: {
+        fileSize: 1024 * 1024 * 5
+    },
+    fileFilter: fileFilter
+});
 
 // @route   GET api/list
 // @desc    Get list
@@ -14,17 +40,19 @@ router.get('/', (req, res) => {
         .catch(() => res.status(404).json({nopostsfound: 'No posts found'}));
 });
 
-// @route   POST api/list
+// @route   POST api/list/upload
 // @desc    Add wish to list
-router.post('/', (req, res) => {
-    const newWish = new Wish({
-        name: req.body.name,
-        link: req.body.link,
-        image: req.body.image,
-        taken: req.user.taken
-    });
-
-    newWish.save().then(post => res.json(post));
+router.route("/upload").post(upload.single('image'), (req, res) => {
+    console.log('body', req.body);
+    console.log('req', req.file.path);
+    // const newWish = new Wish({
+    //     name: req.body.name,
+    //     link: req.body.link,
+    //     image: req.body.image,
+    //     taken: req.user.taken
+    // });
+    //
+    // newWish.save().then(post => res.json(post));
 });
 
 // @route   PUT api/list/:wish_id

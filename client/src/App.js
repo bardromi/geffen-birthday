@@ -8,6 +8,7 @@ import {Paper} from '@material-ui/core'
 import {makeStyles} from "@material-ui/core/styles";
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
+import Upload from "./components/Upload";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -62,7 +63,7 @@ const App = () => {
         const fetchData = async () => {
             setIsLoading(true);
             const result = await axios.get('/api/list',);
-            console.log('bar',result);
+            console.log('bar', result);
             setData(result.data);
             setIsLoading(false);
         };
@@ -75,7 +76,8 @@ const App = () => {
         const image = e.target.files[0];
         const data = new FormData();
         data.append("image", image);
-        const result = await axios.post('/api/list', data);
+        const result = await axios.post('/api/list/upload', data);
+        console.log(result);
         setIsUpLoading(true);
     }
 
@@ -94,20 +96,7 @@ const App = () => {
                 )}
 
             </div>
-
-            <label htmlFor="upload-photo">
-                <input
-                    style={{display: 'none'}}
-                    accept="image/*"
-                    id="upload-photo"
-                    name="upload-photo"
-                    type="file"
-                    onChange={onChangeInput}
-                />
-                <Fab color="primary" size="large" component="span" aria-label="add" className={classes.fab}>
-                    <AddIcon/>
-                </Fab>
-            </label>
+            <Upload/>
         </Container>
     );
 }

@@ -9,6 +9,8 @@ const app = express();
 
 require('dotenv').config()
 
+app.use('/images', express.static('images'));
+
 app.use('/api/list/images', express.static('images'));
 
 app.use(express.json());
