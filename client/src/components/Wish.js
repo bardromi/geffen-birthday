@@ -61,8 +61,8 @@ const Wish = ({wish}) => {
 
     const [checked, setChecked] = React.useState(wish.taken);
     const [open, setOpen] = React.useState(false);
-    const [first, setFirst] = React.useState("")
-    const [last, setLast] = React.useState("")
+    const [first, setFirst] = React.useState("");
+    const [last, setLast] = React.useState("");
 
     const handleOpen = () => {
         setOpen(true);
@@ -103,7 +103,8 @@ const Wish = ({wish}) => {
                 <Typography color={'textPrimary'} align={'center'} variant="h5">{wish.name}</Typography>
                 <CardMedia
                     className={classes.media}
-                    image={require(`../images/${wish.image}.jpg`)}
+                    // image={require(`../images/${wish.image}.jpg`)}
+                    image={`/api/list/images/${wish.image}.jpg`}
                     title="Contemplative Reptile"
                 />
                 <CardContent>

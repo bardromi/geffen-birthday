@@ -2,12 +2,15 @@ const express = require('express');
 const router = express.Router();
 const Wish = require('../models/wish');
 
+
 // @route   GET api/list
 // @desc    Get list
 router.get('/', (req, res) => {
     Wish.find()
         .sort({date: -1})
-        .then(wishes => res.json(wishes))
+        .then(wishes => {
+            return res.json(wishes);
+        })
         .catch(() => res.status(404).json({nopostsfound: 'No posts found'}));
 });
 
