@@ -32,13 +32,13 @@ function Item({imageName}) {
 
     return (
         <Paper className={classes.item}>
-            <img alt={classes.img} className={classes.img} src={require(`./images/${imageName}.png`)}/>
+            <img alt={classes.img} className={classes.img} src={require(`./images/${imageName}`)}/>
         </Paper>
     )
 }
 
 const App = () => {
-    const items = ['carousel1', 'carousel2'];
+    const items = ['carousel1.png', 'carousel2.png'];
     const classes = useStyles();
 
 

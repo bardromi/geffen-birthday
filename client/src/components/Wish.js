@@ -103,7 +103,7 @@ const Wish = ({wish}) => {
                 <Typography color={'textPrimary'} align={'center'} variant="h5">{wish.name}</Typography>
                 <CardMedia
                     className={classes.media}
-                    image={require(`../images/${wish.image}.jpg`)}
+                    image={require(`../images/${wish.image}`)}
                     title="Contemplative Reptile"
                 />
                 <CardContent>
